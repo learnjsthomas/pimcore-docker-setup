@@ -9,7 +9,7 @@ COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/demo-basic-twig pimcore
 chown -R 1000:1000 pimcore
 
 # Setup SQL Database
-echo "---------------------------------"
+echo -e "\n\n\n\n\n---------------------------------"
 echo " Setup SQL Database"
 echo "---------------------------------"
 cd pimcore
@@ -18,7 +18,7 @@ COMPOSER_MEMORY_LIMIT=-1 ./vendor/bin/pimcore-install --admin-username=admin --a
 chown -R 1000:1000 var
 
 # Install php: install web
-echo "---------------------------------"
+echo -e "\n\n\n\n\n---------------------------------"
 echo " INSTALL php: install web"
 echo "---------------------------------"
 php bin/console assets:install web
