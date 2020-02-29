@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# This file runs within the php-container after it was created
+# with the Dockerfile.
+#
+# For excution of this script other containers/services:
+#       mysql & nginx
+# needs to be running otherwise script will fail
+
 # Install pimcore/demo-basic-twig"
 echo "========================================"
 echo " INSTALL pimcore/demo-basic-twig"
