@@ -5,13 +5,13 @@ RUN echo -e "\n========================================"; \
 echo " UPDATE apt-get and install basics"; \
 echo "========================================"; \ 
 apt-get update && \
-apt-get install apt-utils -y && \
-apt-get install -y --no-install-recommends git
+apt-get install apt-utils -qq -y && \
+apt-get install -qq -y --no-install-recommends git
 # Install some base extensions
 RUN echo -e "\n\n\n\n\n========================================"; \
 echo "INSTALL moduled with apt-get"; \
 echo "========================================"; \
-apt-get install -y libzip-dev zip \
+apt-get install -qq -y libzip-dev zip \
 libpng-dev exiftool libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
 libicu-dev libpq-dev libxpm-dev libvpx-dev mariadb-client libxml2-dev
 # Do some php settings
@@ -42,7 +42,7 @@ docker-php-ext-install -j$(nproc) \
 RUN echo -e "\n\n\n\n\n========================================"; \
 echo " INSTALL Imagick"; \
 echo "========================================"; \
-apt-get update && apt-get install -y \
+apt-get update && apt-get install -qq -y \
         libmagickwand-dev --no-install-recommends \
         && pecl install imagick \
         && docker-php-ext-enable imagick
