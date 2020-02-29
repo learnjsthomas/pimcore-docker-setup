@@ -1,7 +1,7 @@
 FROM php:7.2-fpm
 
 # install git
-RUN --quiet echo -e "\n========================================" && \
+RUN echo -e "\n========================================" && \
        echo "UPDATE apt-get and install basics" && \
        echo "========================================" && \
        apt-get update && \
