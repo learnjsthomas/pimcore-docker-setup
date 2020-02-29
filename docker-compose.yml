@@ -4,7 +4,7 @@ services:
     nginx:
         image: nginx:latest
         ports:
-            - 4040:88"
+            - "4040:88"
         volumes:
             - .:/var/www/html
             - ./docker/nginx/config/site.conf:/etc/nginx/conf.d/default.conf
