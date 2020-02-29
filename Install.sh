@@ -9,10 +9,6 @@
 #      'pimcore' 
 # will be created
 
-# Download the installation files from GitHub
-git clone https://github.com/learnjsthomas/pimcore-docker-setup.git pimcore
-cd pimcore
-
 # Build or/and load the 3 docker-containers as services
 #   php     = main container with php stuff and later on pimcore
 #   ngnix   = Webserver uses
