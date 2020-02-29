@@ -1,16 +1,16 @@
 FROM php:7.2-fpm
 
 # install git
-RUN     echo -e "\n========================================" && \
-        echo -e "UPDATE apt-get and install basics" && \
-        echo -e "========================================" && \
-        apt-get update && \
-        apt-get install apt-utils && \
-        apt-get install -y --no-install-recommends git
+RUN echo -e "\n========================================" && \
+       echo "UPDATE apt-get and install basics" && \
+       echo "========================================" && \
+       apt-get update && \
+       apt-get install apt-utils -y && \
+       apt-get install -y --no-install-recommends git
 
 #install some base extensions
-RUN echo "\n========================================"
-RUN echo "INSALL moduled with apt-get"
+RUN echo -e "\n========================================"
+RUN echo "INSTALL moduled with apt-get"
 RUN echo "========================================\n"
 RUN apt-get install -y \
         libzip-dev \
@@ -26,15 +26,15 @@ RUN apt-get install -y \
         libvpx-dev \
         mariadb-client \
         libxml2-dev
-RUN echo "\n========================================"
+RUN echo -e "\n========================================"
 RUN echo "DO PHP Settings "
-RUN echo "========================================\n"
+RUN echo "========================================"
 RUN docker-php-ext-configure zip --with-libzip
 RUN docker-php-ext-install zip
 
 RUN echo -e "\n========================================"
-RUN echo -e " INSTALL PHP extensions"
-RUN echo -e "========================================\n"
+RUN echo " INSTALL PHP extensions"
+RUN echo "========================================"
 RUN docker-php-ext-install -j$(nproc) \
         zip \
         exif \
@@ -53,8 +53,8 @@ RUN docker-php-ext-install -j$(nproc) \
 
 # Install Imagick
 RUN echo -e "\n========================================"
-RUN echo -e " INSTALL Imagick"
-RUN echo -e "========================================\n"
+RUN echo " INSTALL Imagick"
+RUN echo "========================================"
 RUN apt-get update && apt-get install -y \
     libmagickwand-dev --no-install-recommends \
     && pecl install imagick \
