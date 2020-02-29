@@ -1,10 +1,10 @@
 FROM php:7.2-fpm
 
 # install git
-RUN echo "\n========================================"
-RUN echo "UPDATE apt-get and install basics"
-RUN echo "========================================\n"
-RUN apt-get update && \
+RUN     echo "\n========================================" && \
+        echo "UPDATE apt-get and install basics" && \
+        echo "========================================\n" && \
+        apt-get update && \
         apt-get install apt-utils && \
         apt-get install -y --no-install-recommends git
 
@@ -32,9 +32,9 @@ RUN echo "========================================\n"
 RUN docker-php-ext-configure zip --with-libzip
 RUN docker-php-ext-install zip
 
-RUN echo "\n========================================"
-RUN echo " INSTALL PHP extensions"
-RUN echo "========================================\n"
+RUN echo -e "\n========================================"
+RUN echo -e " INSTALL PHP extensions"
+RUN echo -e "========================================\n"
 RUN docker-php-ext-install -j$(nproc) \
         zip \
         exif \
@@ -52,33 +52,33 @@ RUN docker-php-ext-install -j$(nproc) \
         iconv
 
 # Install Imagick
-RUN echo "\n========================================"
-RUN echo " INSTALL Imagick"
-RUN echo "========================================\n"
+RUN echo -e "\n========================================"
+RUN echo -e " INSTALL Imagick"
+RUN echo -e "========================================\n"
 RUN apt-get update && apt-get install -y \
     libmagickwand-dev --no-install-recommends \
     && pecl install imagick \
 	&& docker-php-ext-enable imagick
 
 # Install Composer
-RUN echo "\n========================================"
-RUN echo " INSTALL Composer"
-RUN echo "========================================\n"
+RUN echo -e "\n========================================"
+RUN echo -e " INSTALL Composer"
+RUN echo -e "========================================\n"
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
-RUN echo "\n========================================"
-RUN echo " INSTALL pimcore/demo-basic-twig"
-RUN echo "========================================\n"
+RUN echo -e "\n========================================"
+RUN echo -e " INSTALL pimcore/demo-basic-twig"
+RUN echo -e "========================================\n"
 RUN COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/demo-basic-twig pimcore
 RUN chown -R 1000:1000 pimcore
 RUN cd pimcore 
-RUN echo "---------------------------------"
-RUN echo " Setup SQL Database"
-RUN echo "---------------------------------"
+RUN echo -e "---------------------------------"
+RUN echo -e " Setup SQL Database"
+RUN echo -e "---------------------------------"
 RUN COMPOSER_MEMORY_LIMIT=-1 ./vendor/bin/pimcore-install --admin-username=admin --admin-password=admin --mysql-host-socket=mysql --mysql-username=pimcore --mysql-password=pimcore --mysql-database=pimcore --no-interaction
 RUN chown -R 1000:1000 var
-RUN echo "---------------------------------"
-RUN echo " php: install web"
-RUN echo "---------------------------------"
+RUN echo -e "---------------------------------"
+RUN echo -e " php: install web"
+RUN echo -e "---------------------------------"
 RUN php bin/console assets:install web
