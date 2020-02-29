@@ -1,9 +1,7 @@
 FROM php:7.2-fpm
 
 # install git
-RUN echo -e "\n========================================"
-RUN echo "UPDATE apt-get and install basics"
-RUN echo "========================================"
+RUN echo -e "\n========================================\nUPDATE apt-get and install basics\n========================================"
 RUN apt-get update && \
         apt-get install apt-utils -y && \
         apt-get install -y --no-install-recommends git
