@@ -9,19 +9,18 @@ apt-get install apt-utils -y && \
 apt-get install -y --no-install-recommends git
 
 #install some base extensions
-RUN echo -e "\n========================================"
-RUN echo "INSTALL moduled with apt-get"
-RUN echo "========================================"
-RUN apt-get install -y \
-        libzip-dev zip \
-        libpng-dev exiftool libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
-        libicu-dev libpq-dev libxpm-dev libvpx-dev mariadb-client libxml2-dev
+RUN echo -e "\n========================================"; \
+echo "INSTALL moduled with apt-get"; \
+echo "========================================"; \
+apt-get install -y libzip-dev zip \
+libpng-dev exiftool libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
+libicu-dev libpq-dev libxpm-dev libvpx-dev mariadb-client libxml2-dev
 
-RUN echo -e "\n========================================"
-RUN echo "DO PHP Settings "
-RUN echo "========================================"
-RUN docker-php-ext-configure zip --with-libzip
-RUN docker-php-ext-install zip
+RUN echo -e "\n========================================"; \
+echo "DO PHP Settings "; \
+echo "========================================"; \
+docker-php-ext-configure zip --with-libzip; \
+docker-php-ext-install zip; \
 
 RUN echo -e "\n========================================"
 RUN echo " INSTALL PHP extensions"
