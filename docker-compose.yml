@@ -35,6 +35,7 @@ services:
         build: ./docker/php
         volumes:
             - .:/var/www/html
+            - ./docker/php/installpimcore.sh:/var/www/html/installpimcore.sh
         links:
             - mysql:mysql
         depends_on:
