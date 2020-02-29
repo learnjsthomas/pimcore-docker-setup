@@ -3,10 +3,10 @@ FROM php:7.2-fpm
 # install git
 RUN echo -e "\n========================================"; \
 echo " UPDATE apt-get and install basics"; \
-echo "========================================" 
-RUN apt-get update && \
-        apt-get install apt-utils -y && \
-        apt-get install -y --no-install-recommends git
+echo "========================================"; \ 
+apt-get update && \
+apt-get install apt-utils -y && \
+apt-get install -y --no-install-recommends git
 
 #install some base extensions
 RUN echo -e "\n========================================"; \
@@ -20,12 +20,12 @@ RUN echo -e "\n========================================"; \
 echo "DO PHP Settings "; \
 echo "========================================"; \
 docker-php-ext-configure zip --with-libzip; \
-docker-php-ext-install zip; \
+docker-php-ext-install zip; 
 
-RUN echo -e "\n========================================"
-RUN echo " INSTALL PHP extensions"
-RUN echo "========================================"
-RUN docker-php-ext-install -j$(nproc) \
+RUN echo -e "\n========================================"; \
+echo " INSTALL PHP extensions"; \
+echo "========================================"; \
+docker-php-ext-install -j$(nproc) \
         zip \
         exif \
         bcmath \
@@ -42,13 +42,13 @@ RUN docker-php-ext-install -j$(nproc) \
         iconv
 
 # Install Imagick
-RUN echo -e "\n========================================"
-RUN echo " INSTALL Imagick"
-RUN echo "========================================"
-RUN apt-get update && apt-get install -y \
-    libmagickwand-dev --no-install-recommends \
-    && pecl install imagick \
-	&& docker-php-ext-enable imagick
+RUN echo -e "\n========================================"; \
+echo " INSTALL Imagick"; \
+echo "========================================"; \
+apt-get update && apt-get install -y \
+        libmagickwand-dev --no-install-recommends \
+        && pecl install imagick \
+        && docker-php-ext-enable imagick
 
 # Install Composer
 RUN echo -e "\n========================================"
