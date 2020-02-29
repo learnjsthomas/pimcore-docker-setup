@@ -2,6 +2,7 @@ FROM php:7.2-fpm
 
 # install git
 RUN apt-get update && \
+        apt-get install apt-utils && \
         apt-get install -y --no-install-recommends git
 
 #install some base extensions
