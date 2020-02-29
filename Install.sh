@@ -15,6 +15,7 @@
 #   mysql   = holding the database for the content
 #
 # see docker-compose.ym 
+cd pimcore
 clear
 docker-compose build 
 docker-compose up -d
