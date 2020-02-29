@@ -66,3 +66,19 @@ RUN echo " INSTALL Composer"
 RUN echo "========================================\n"
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
+
+RUN echo "\n========================================"
+RUN echo " INSTALL pimcore/demo-basic-twig"
+RUN echo "========================================\n"
+RUN COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/demo-basic-twig pimcore
+RUN chown -R 1000:1000 pimcore
+RUN cd pimcore 
+RUN echo "---------------------------------"
+RUN echo " Setup SQL Database"
+RUN echo "---------------------------------"
+RUN COMPOSER_MEMORY_LIMIT=-1 ./vendor/bin/pimcore-install --admin-username=admin --admin-password=admin --mysql-host-socket=mysql --mysql-username=pimcore --mysql-password=pimcore --mysql-database=pimcore --no-interaction
+RUN chown -R 1000:1000 var
+RUN echo "---------------------------------"
+RUN echo " php: install web"
+RUN echo "---------------------------------"
+RUN php bin/console assets:install web
