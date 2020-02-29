@@ -1,7 +1,7 @@
 FROM php:7.2-fpm
 
 # install git
-RUN echo -e "\n========================================" && \
+RUN --quiet echo -e "\n========================================" && \
        echo "UPDATE apt-get and install basics" && \
        echo "========================================" && \
        apt-get update && \
@@ -11,7 +11,7 @@ RUN echo -e "\n========================================" && \
 #install some base extensions
 RUN echo -e "\n========================================"
 RUN echo "INSTALL moduled with apt-get"
-RUN echo "========================================\n"
+RUN echo "========================================"
 RUN apt-get install -y \
         libzip-dev \
         zip \
@@ -62,23 +62,23 @@ RUN apt-get update && apt-get install -y \
 
 # Install Composer
 RUN echo -e "\n========================================"
-RUN echo -e " INSTALL Composer"
-RUN echo -e "========================================\n"
+RUN echo " INSTALL Composer"
+RUN echo "========================================"
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
 RUN echo -e "\n========================================"
-RUN echo -e " INSTALL pimcore/demo-basic-twig"
-RUN echo -e "========================================\n"
+RUN echo " INSTALL pimcore/demo-basic-twig"
+RUN echo "========================================"
 RUN COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/demo-basic-twig pimcore
 RUN chown -R 1000:1000 pimcore
 RUN cd pimcore 
-RUN echo -e "---------------------------------"
-RUN echo -e " Setup SQL Database"
-RUN echo -e "---------------------------------"
+RUN echo "---------------------------------"
+RUN echo " Setup SQL Database"
+RUN echo "---------------------------------"
 RUN COMPOSER_MEMORY_LIMIT=-1 ./vendor/bin/pimcore-install --admin-username=admin --admin-password=admin --mysql-host-socket=mysql --mysql-username=pimcore --mysql-password=pimcore --mysql-database=pimcore --no-interaction
 RUN chown -R 1000:1000 var
-RUN echo -e "---------------------------------"
-RUN echo -e " php: install web"
-RUN echo -e "---------------------------------"
+RUN echo "---------------------------------"
+RUN echo " php: install web"
+RUN echo "---------------------------------"
 RUN php bin/console assets:install web
