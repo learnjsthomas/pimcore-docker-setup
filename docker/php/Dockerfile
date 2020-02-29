@@ -18,7 +18,7 @@ libicu-dev libpq-dev libxpm-dev libvpx-dev mariadb-client libxml2-dev
 RUN echo -e "\n========================================"; \
 echo " Do some php settings "; \
 echo "========================================"; \
-docker-php-ext-configure zip --with-libzip; \
+docker-php-ext-configure zip --with-libzip;
 # Install php extensions
 RUN echo -e "\n========================================"; \
 echo " INSTALL PHP extensions"; \
