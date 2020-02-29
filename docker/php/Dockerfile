@@ -3,10 +3,10 @@ FROM php:7.2-fpm
 # install git
 RUN echo -e "\n========================================"; \
 echo " UPDATE apt-get and install basics"; \
-echo "========================================"; \ 
-apt-get update && \
-apt-get install apt-utils -y && \
-apt-get install -y --no-install-recommends git
+echo "========================================" 
+RUN apt-get update && \
+        apt-get install apt-utils -y && \
+        apt-get install -y --no-install-recommends git
 
 #install some base extensions
 RUN echo -e "\n========================================"; \
