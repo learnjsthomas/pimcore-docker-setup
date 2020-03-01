@@ -11,7 +11,7 @@
 echo -e "\n\n\n\n\n========================================"
 echo " INSTALL pimcore/demo-basic-twig"
 echo "========================================"
-COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/demo pimcore
+COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/demo-basic-twig pimcore
 # Set the right owner
 chown -R 1000:1000 pimcore
 
