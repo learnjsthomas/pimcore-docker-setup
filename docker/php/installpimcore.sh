@@ -8,7 +8,7 @@
 # needs to be running otherwise script will fail
 
 # Install pimcore/demo-basic-twig"
-echo "========================================"
+echo -e "\n\n\n\n\n========================================"
 echo " INSTALL pimcore/demo-basic-twig"
 echo "========================================"
 COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/demo-basic-twig pimcore
